@@ -1,0 +1,65 @@
+{
+	"name": "drag-study",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc -b && vite build",
+		"preview": "vite preview",
+		"lint": "npm run lint-eslint && npm run lint-stylelint",
+		"lint-eslint": "eslint -c eslint.config.js --ext .ts,.tsx,.js src",
+		"lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}",
+		"prepare": "husky"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint --config commitlint.config.js -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"lint-staged": {
+		"*.{ts,tsx,js}": [
+			"eslint --config eslint.config.js"
+		],
+		"*.{css,less,scss}": [
+			"stylelint --config .stylelintrc.js"
+		],
+		"*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+			"prettier --write"
+		]
+	},
+	"dependencies": {
+		"element-plus": "^2.7.6",
+		"vue": "^3.4.29"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
+		"@eslint/eslintrc": "^3.1.0",
+		"@eslint/js": "^9.6.0",
+		"@vitejs/plugin-vue": "^5.0.5",
+		"eslint": "^9.6.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"eslint-plugin-vue": "^9.26.0",
+		"globals": "^15.7.0",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.7",
+		"prettier": "^3.3.2",
+		"sass": "^1.77.6",
+		"stylelint": "^16.6.1",
+		"stylelint-config-html": "^1.1.0",
+		"stylelint-config-recess-order": "^5.0.1",
+		"stylelint-config-recommended-scss": "^14.0.0",
+		"stylelint-config-recommended-vue": "^1.5.0",
+		"stylelint-config-standard": "^36.0.1",
+		"stylelint-config-standard-scss": "^13.1.0",
+		"typescript": "^5.2.2",
+		"typescript-eslint": "^7.15.0",
+		"unplugin-auto-import": "^0.17.6",
+		"unplugin-vue-components": "^0.27.2",
+		"vite": "^5.3.1",
+		"vue-tsc": "^2.0.21"
+	}
+}

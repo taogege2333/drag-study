@@ -6,6 +6,7 @@ import {ElementPlusResolver} from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	base: '/drag-study/',
 	plugins: [
 		vue(),
 		// 按需引入element-plus

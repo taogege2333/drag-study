@@ -9,6 +9,14 @@ export default {
 		'stylelint-config-recess-order',
 	],
 
+	// 自定义规则
+	overrides: [
+		{
+			files: ['**/*.(html|vue)'],
+			customSyntax: 'postcss-html',
+		},
+	],
+
 	// 规则配置
 	rules: {
 		// 禁用注释前的空行规则

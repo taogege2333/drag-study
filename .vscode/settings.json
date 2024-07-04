@@ -36,7 +36,7 @@
 	"css.validate": false,
 	"less.validate": false,
 	"scss.validate": false,
-	"stylelint.validate": ["css", "less", "sass", "scss"],
+	"stylelint.validate": ["css", "less", "sass", "scss", "vue"],
 	//保存时，eslint自动代码规范化
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",

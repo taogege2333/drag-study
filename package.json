@@ -9,7 +9,7 @@
 		"preview": "vite preview",
 		"lint": "npm run lint-eslint && npm run lint-stylelint && npm run lint-prettier",
 		"lint-eslint": "eslint --fix -c eslint.config.js",
-		"lint-stylelint": "stylelint --fix --config .stylelintrc.js src/**/*.{less,css,scss}",
+		"lint-stylelint": "stylelint --fix --config .stylelintrc.js src/**/*.{less,css,scss,vue}",
 		"lint-prettier": "prettier --write src/**/*.{ts,tsx,js,vue,json,vue,html,yml,css,less,scss,md}",
 		"prepare": "husky"
 	},

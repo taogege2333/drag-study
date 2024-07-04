@@ -4,7 +4,7 @@ export default {
 		'stylelint-config-standard',
 		'stylelint-config-html/vue',
 		'stylelint-config-standard-scss',
-		'stylelint-config-recommended-vue',
+		'stylelint-config-recommended-vue/scss',
 		'stylelint-config-recommended-scss',
 		'stylelint-config-recess-order',
 	],

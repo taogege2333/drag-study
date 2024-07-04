@@ -31,6 +31,12 @@ export default {
 		'no-invalid-double-slash-comments': null,
 		// 指定规则前需要空行
 		'rule-empty-line-before': ['always', {except: ['first-nested']}],
+		'scss/at-rule-no-unknown': [
+			true,
+			{
+				'ignoreAtRules': ['tailwind'],
+			},
+		],
 	},
 
 	// 忽略检查的文件或文件夹

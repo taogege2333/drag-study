@@ -33,7 +33,10 @@
 		}
 	},
 	"dependencies": {
+		"@types/lodash-es": "^4.17.12",
 		"element-plus": "^2.7.6",
+		"lodash-es": "^4.17.21",
+		"pinia": "^2.1.7",
 		"vue": "^3.4.29"
 	},
 	"devDependencies": {

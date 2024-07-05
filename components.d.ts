@@ -7,9 +7,21 @@ export {};
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ButtonSetting: typeof import('./src/components/Setting/ButtonSetting/index.vue')['default']
+    ButtonWidget: typeof import('./src/components/Widget/ButtonWidget/index.vue')['default']
+    copy: typeof import('./src/components/SettingPanel/ButtonSetting copy.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElCollapse: typeof import('element-plus/es')['ElCollapse']
+    ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
+    LinkSetting: typeof import('./src/components/Setting/LinkSetting/index.vue')['default']
+    LinkWidget: typeof import('./src/components/Widget/LinkWidget/index.vue')['default']
+    RenderPanel: typeof import('./src/components/RenderPanel.vue')['default']
+    SettingPanel: typeof import('./src/components/SettingPanel.vue')['default']
+    WidgetPanel: typeof import('./src/components/WidgetPanel.vue')['default']
   }
 }

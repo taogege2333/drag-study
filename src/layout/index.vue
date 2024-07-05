@@ -2,12 +2,18 @@
 	<el-container>
 		<el-header>1</el-header>
 		<el-container>
-			<el-aside>2</el-aside>
-			<el-main>3</el-main>
-			<el-aside>4</el-aside>
+			<el-aside><WidgetPanel /></el-aside>
+			<el-main><RenderPanel /></el-main>
+			<el-aside><SettingPanel /></el-aside>
 		</el-container>
 	</el-container>
 </template>
+
+<script setup lang="ts">
+import WidgetPanel from '@/components/WidgetPanel.vue';
+import SettingPanel from '@/components/SettingPanel.vue';
+import RenderPanel from '@/components/RenderPanel.vue';
+</script>
 
 <style lang="scss" scoped>
 @mixin common {

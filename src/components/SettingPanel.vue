@@ -3,7 +3,7 @@
 		<component
 			v-if="designer.currentWidget"
 			:is="designer.currentWidget?.settingComponent"
-			v-bind="designer.currentWidget?.props" />
+			:widget="designer.currentWidget" />
 	</div>
 </template>
 

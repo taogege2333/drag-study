@@ -1,5 +1,6 @@
 <template>
 	<div>linkSetting</div>
+	<div>{{ widget.id }}</div>
 	<div>{{ props }}</div>
 </template>
 
@@ -8,7 +9,9 @@ defineOptions({
 	name: 'LinkSetting',
 });
 
-import {LinkProps} from '@/types/link';
+import {LinkWidgetType} from '@/types/link';
+import {computed} from 'vue';
 
-const props = defineProps<LinkProps>();
+const {widget} = defineProps<{widget: LinkWidgetType}>();
+const props = computed(() => widget.props);
 </script>

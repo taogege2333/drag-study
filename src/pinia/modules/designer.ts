@@ -9,7 +9,10 @@ export const useDesignerStore = defineStore('designer', {
 		currentWidget: null as WidgetType | null,
 	}),
 	actions: {
-		addWidget(widget: WidgetType) {
+		setWidgets(widgets: WidgetType[]) {
+			this.widgets = cloneDeep(widgets);
+		},
+		pushWidget(widget: WidgetType) {
 			const id = `${widget.name}-${generateId()}`;
 			this.widgets.push(cloneDeep({...widget, id}));
 			return id;
@@ -20,7 +23,7 @@ export const useDesignerStore = defineStore('designer', {
 				1,
 			);
 		},
-		setCurrentWidget(id: string) {
+		setCurrentWidget(id: string = '') {
 			this.currentWidget = cloneDeep(this.widgets.find((item) => item.id === id)) ?? null;
 		},
 	},

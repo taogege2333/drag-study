@@ -9,7 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ButtonSetting: typeof import('./src/components/Setting/ButtonSetting/index.vue')['default']
     ButtonWidget: typeof import('./src/components/Widget/ButtonWidget/index.vue')['default']
-    copy: typeof import('./src/components/SettingPanel/ButtonSetting copy.vue')['default']
+    Demo: typeof import('./src/components/Demo.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
@@ -22,6 +22,7 @@ declare module 'vue' {
     LinkWidget: typeof import('./src/components/Widget/LinkWidget/index.vue')['default']
     RenderPanel: typeof import('./src/components/RenderPanel.vue')['default']
     SettingPanel: typeof import('./src/components/SettingPanel.vue')['default']
+    WidgetFrame: typeof import('./src/components/Widget/WidgetFrame/index.vue')['default']
     WidgetPanel: typeof import('./src/components/WidgetPanel.vue')['default']
   }
 }

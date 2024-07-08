@@ -1,15 +1,21 @@
 <template>
 	<el-collapse v-model="activeNames" :accordion="false">
 		<el-collapse-item title="基础" name="base">
-			<ul class="flex flex-row flex-wrap justify-between">
-				<li
-					class="w-32 text-center py-1 border border-solid border-gray-300 rounded cursor-move select-none"
-					v-for="item in BASE.components"
+			<VueDraggable
+				v-model="list"
+				:group="{name: 'widget', pull: 'clone', put: false}"
+				:animation="150"
+				:sort="false"
+				class="flex flex-row flex-wrap justify-between"
+				:clone="clone">
+				<div
+					class="w-32 text-center py-1 border border-solid border-gray-300 rounded cursor-move"
+					v-for="item in list"
 					:key="item.name"
 					@dblclick="handleDblClick(item)">
 					{{ item.name }}
-				</li>
-			</ul>
+				</div>
+			</VueDraggable>
 		</el-collapse-item>
 	</el-collapse>
 </template>
@@ -19,13 +25,20 @@ import {ref} from 'vue';
 import {BASE} from '@/data';
 import {useDesignerStore} from '@/pinia/modules/designer';
 import {WidgetType} from '@/types/designer';
+import {VueDraggable} from 'vue-draggable-plus';
+import {cloneDeep} from 'lodash-es';
+import {generateId} from '@/utils/utils';
 
 const designer = useDesignerStore();
+const list = ref(BASE.components);
 const activeNames = ref(['base']);
 
 const handleDblClick = (item: WidgetType) => {
-	const id = designer.addWidget(item);
+	const id = designer.pushWidget(item);
 	designer.setCurrentWidget(id);
-	console.log(designer.widgets);
+};
+
+const clone = (item: WidgetType) => {
+	return cloneDeep({...item, id: `${item.name}-${generateId()}`});
 };
 </script>

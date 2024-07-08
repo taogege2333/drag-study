@@ -1,5 +1,6 @@
 <template>
 	<div>buttonSetting</div>
+	<div>{{ widget.id }}</div>
 	<div>{{ props }}</div>
 </template>
 
@@ -8,7 +9,9 @@ defineOptions({
 	name: 'ButtonSetting',
 });
 
-import {ButtonProps} from '@/types/button';
+import {ButtonWidgetType} from '@/types/button';
+import {computed} from 'vue';
 
-const props = defineProps<ButtonProps>();
+const {widget} = defineProps<{widget: ButtonWidgetType}>();
+const props = computed(() => widget.props);
 </script>

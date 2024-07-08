@@ -1,5 +1,5 @@
 <template>
-	<el-container>
+	<el-container class="select-none">
 		<el-header>1</el-header>
 		<el-container>
 			<el-aside><WidgetPanel /></el-aside>

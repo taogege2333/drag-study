@@ -2,7 +2,7 @@ export const BASE = {
 	type: 'base',
 	components: [
 		{
-			name: 'button',
+			name: 'Button',
 			widgetComponent: 'ButtonWidget',
 			settingComponent: 'ButtonSetting',
 			type: 'base',
@@ -13,7 +13,7 @@ export const BASE = {
 			},
 		},
 		{
-			name: 'link',
+			name: 'Link',
 			widgetComponent: 'LinkWidget',
 			settingComponent: 'LinkSetting',
 			type: 'base',

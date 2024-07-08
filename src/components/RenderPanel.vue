@@ -4,7 +4,8 @@
 		v-model="widgets"
 		group="widget"
 		ghostClass="ghost"
-		:animation="150">
+		:animation="150"
+		@add="onAdd">
 		<component
 			v-for="widget in widgets"
 			:key="widget.id"
@@ -16,7 +17,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 import {useDesignerStore} from '@/pinia/modules/designer';
-import {VueDraggable} from 'vue-draggable-plus';
+import {VueDraggable, type SortableEvent} from 'vue-draggable-plus';
 
 const designer = useDesignerStore();
 
@@ -28,4 +29,8 @@ const widgets = computed({
 		designer.setWidgets(value);
 	},
 });
+
+const onAdd = (e: SortableEvent) => {
+	designer.setCurrentWidget(designer.widgets[e.newIndex as number].id);
+};
 </script>

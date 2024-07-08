@@ -7,10 +7,10 @@
 		"dev": "vite",
 		"build": "vue-tsc -b && vite build",
 		"preview": "vite preview",
-		"lint": "npm run lint-eslint && npm run lint-stylelint && npm run lint-prettier",
-		"lint-eslint": "eslint --fix -c eslint.config.js",
-		"lint-stylelint": "stylelint --fix --config .stylelintrc.js src/**/*.{less,css,scss,vue}",
-		"lint-prettier": "prettier --write src/**/*.{ts,tsx,js,vue,json,vue,html,yml,css,less,scss,md}",
+		"lint": "pnpm run lint-eslint && pnpm run lint-stylelint && pnpm run lint-prettier",
+		"lint-eslint": "eslint --cache --fix -c eslint.config.js --cache-location node_modules/.cache/.eslintcache",
+		"lint-stylelint": "stylelint --cache --fix --config .stylelintrc.js src/**/*.{less,css,scss,vue} --cache-location node_modules/.cache/.stylelintcache",
+		"lint-prettier": "prettier --cache --write src/**/*.{ts,tsx,js,vue,json,vue,html,yml,css,less,scss,md}",
 		"prepare": "husky"
 	},
 	"lint-staged": {

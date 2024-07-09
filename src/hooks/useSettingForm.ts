@@ -7,11 +7,12 @@ import {watch} from 'vue';
  * @param id
  */
 export function useSettingForm(form: any, id: string) {
+	const designer = useDesignerStore();
 	watch(
 		form,
 		(newValue) => {
-			const designer = useDesignerStore();
 			designer.updateWidgetProps(id, newValue);
+			console.log(newValue, designer.widgets);
 		},
 		{deep: true},
 	);

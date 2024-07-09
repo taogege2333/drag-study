@@ -1,6 +1,6 @@
 <template>
 	<div class="frame inline-block" :style="style" @mousedown="handleClick">
-		<slot />
+		<slot v-bind="widget.props" />
 	</div>
 </template>
 

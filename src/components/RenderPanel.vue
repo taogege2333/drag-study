@@ -20,7 +20,6 @@ import {useDesignerStore} from '@/pinia/modules/designer';
 import {VueDraggable, type SortableEvent} from 'vue-draggable-plus';
 
 const designer = useDesignerStore();
-
 const widgets = computed({
 	get() {
 		return designer.widgets;

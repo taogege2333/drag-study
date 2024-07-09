@@ -8,6 +8,11 @@ export const useDesignerStore = defineStore('designer', {
 		widgets: [] as WidgetType[],
 		currentWidget: null as WidgetType | null,
 	}),
+	getters: {
+		getWidgets(state): WidgetType[] {
+			return state.widgets;
+		},
+	},
 	actions: {
 		/**
 		 * 设置画布中的组件
@@ -23,7 +28,11 @@ export const useDesignerStore = defineStore('designer', {
 		 */
 		updateWidgetProps(id: string, props: any) {
 			const index = this.widgets.findIndex((item) => item.id === id);
-			index !== -1 && (this.widgets[index].props = cloneDeep(props));
+			if (index !== -1) {
+				const widgetCopy = [...this.widgets];
+				widgetCopy.splice(index, 1, cloneDeep({...this.widgets[index], props}));
+				this.widgets = widgetCopy;
+			}
 		},
 		/**
 		 * 在尾部添加组件
@@ -32,7 +41,7 @@ export const useDesignerStore = defineStore('designer', {
 		 */
 		pushWidget(widget: WidgetType) {
 			const id = `${widget.name}-${generateId()}`;
-			this.widgets.push(cloneDeep({...widget, id}));
+			this.widgets = [...this.widgets, cloneDeep({...widget, id})];
 			return id;
 		},
 		/**

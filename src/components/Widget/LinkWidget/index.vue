@@ -1,6 +1,8 @@
 <template>
 	<WidgetFrame :widget="widget">
-		<el-link v-bind="props">{{ props.text }}</el-link>
+		<template #default="props">
+			<el-link v-bind="props">{{ props.text }}</el-link>
+		</template>
 	</WidgetFrame>
 </template>
 
@@ -11,8 +13,6 @@ defineOptions({
 
 import WidgetFrame from '@/components/Widget/WidgetFrame/index.vue';
 import {LinkWidgetType} from '@/types/link';
-import {computed} from 'vue';
 
 const {widget} = defineProps<{widget: LinkWidgetType}>();
-const props = computed(() => widget.props);
 </script>

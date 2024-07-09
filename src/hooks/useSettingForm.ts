@@ -12,7 +12,6 @@ export function useSettingForm(form: any, id: string) {
 		form,
 		(newValue) => {
 			designer.updateWidgetProps(id, newValue);
-			console.log(newValue, designer.widgets);
 		},
 		{deep: true},
 	);

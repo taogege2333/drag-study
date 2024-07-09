@@ -1,6 +1,9 @@
 <template>
 	<div>
 		<el-form label-width="auto">
+			<el-form-item label="text：">
+				<el-input v-model="form.text" />
+			</el-form-item>
 			<el-form-item label="type：">
 				<el-select v-model="form.type">
 					<el-option

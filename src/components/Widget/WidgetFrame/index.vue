@@ -18,7 +18,14 @@ const handleClick = () => {
 
 const style = computed(() => {
 	return {
-		outline: `1px solid ${designer.currentWidget?.id === widget.id ? 'red' : 'transparent'}`,
+		outline: `2px solid ${designer.currentWidget?.id === widget.id ? 'red' : 'transparent'}`,
+		zIndex: designer.currentWidget?.id === widget.id ? '100' : '0',
 	};
 });
 </script>
+
+<style lang="scss" scoped>
+.frame {
+	position: relative;
+}
+</style>

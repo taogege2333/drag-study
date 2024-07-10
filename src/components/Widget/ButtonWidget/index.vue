@@ -1,9 +1,11 @@
 <template>
-	<WidgetFrame :widget="widget">
-		<template #default="props">
-			<el-button :type="props.type" :size="props.size">{{ props.text }}</el-button>
-		</template>
-	</WidgetFrame>
+	<el-button
+		:class="{selected: currentWidget?.id === widget.id}"
+		:type="widget.props.type"
+		:size="widget.props.size"
+		@click.stop="handleClick"
+		>{{ widget.props.text }}</el-button
+	>
 </template>
 
 <script setup lang="ts">
@@ -11,8 +13,9 @@ defineOptions({
 	name: 'ButtonWidget',
 });
 
-import WidgetFrame from '@/components/Widget/WidgetFrame/index.vue';
+import {useWidget} from '@/hooks/useWidget';
 import {ButtonWidgetType} from '@/types/button';
 
-const {widget} = defineProps<{widget: ButtonWidgetType}>();
+const props = defineProps<{widget: ButtonWidgetType}>();
+const {widget, currentWidget, handleClick} = useWidget<ButtonWidgetType>(props);
 </script>

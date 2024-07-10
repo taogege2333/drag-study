@@ -26,8 +26,7 @@ import {BASE} from '@/data';
 import {useDesignerStore} from '@/pinia/modules/designer';
 import {WidgetType} from '@/types/designer';
 import {VueDraggable} from 'vue-draggable-plus';
-import {cloneDeep} from 'lodash-es';
-import {generateId} from '@/utils/utils';
+import {clone} from '@/utils/utils';
 
 const designer = useDesignerStore();
 const list = ref(BASE.components);
@@ -36,9 +35,5 @@ const activeNames = ref(['base']);
 const handleDblClick = (item: WidgetType) => {
 	const id = designer.pushWidget(item);
 	designer.setCurrentWidget(id);
-};
-
-const clone = (item: WidgetType) => {
-	return cloneDeep({...item, id: `${item.name}-${generateId()}`});
 };
 </script>

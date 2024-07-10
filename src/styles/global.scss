@@ -22,3 +22,9 @@ body {
 	width: auto;
 	border: none;
 }
+
+.selected {
+	position: relative;
+	z-index: 100;
+	outline: 2px solid red !important;
+}

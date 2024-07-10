@@ -4,5 +4,7 @@ export interface WidgetType {
 	widgetComponent: string;
 	settingComponent: string;
 	type: string;
+	children?: WidgetType[];
+	props: any;
 	[key: string]: any;
 }

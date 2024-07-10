@@ -1,25 +1,27 @@
 import {defineStore} from 'pinia';
 import {cloneDeep} from 'lodash-es';
 import {WidgetType} from '@/types/designer';
-import {generateId} from '@/utils/utils';
+import {generateId, getWidgetById, updateWidgetChildren, updateWidgetProps} from '@/utils/utils';
 
 export const useDesignerStore = defineStore('designer', {
 	state: () => ({
 		widgets: [] as WidgetType[],
 		currentWidget: null as WidgetType | null,
 	}),
-	getters: {
-		getWidgets(state): WidgetType[] {
-			return state.widgets;
-		},
-	},
 	actions: {
 		/**
 		 * 设置画布中的组件
 		 * @param widgets
 		 */
-		setWidgets(widgets: WidgetType[]) {
-			this.widgets = cloneDeep(widgets);
+		setWidgets(widgets: WidgetType[], id: string | undefined) {
+			if (id) {
+				const temp = updateWidgetChildren(this.widgets, id, widgets);
+				if (temp) {
+					this.widgets = temp;
+				}
+			} else {
+				this.widgets = cloneDeep(widgets);
+			}
 		},
 		/**
 		 * 更新组件的属性
@@ -27,11 +29,9 @@ export const useDesignerStore = defineStore('designer', {
 		 * @param props
 		 */
 		updateWidgetProps(id: string, props: any) {
-			const index = this.widgets.findIndex((item) => item.id === id);
-			if (index !== -1) {
-				const widgetCopy = [...this.widgets];
-				widgetCopy.splice(index, 1, cloneDeep({...this.widgets[index], props}));
-				this.widgets = widgetCopy;
+			const temp = updateWidgetProps(this.widgets, id, props);
+			if (temp) {
+				this.widgets = temp;
 			}
 		},
 		/**
@@ -49,7 +49,7 @@ export const useDesignerStore = defineStore('designer', {
 		 * @param id
 		 */
 		setCurrentWidget(id: string = '') {
-			this.currentWidget = cloneDeep(this.widgets.find((item) => item.id === id)) ?? null;
+			this.currentWidget = getWidgetById(this.widgets, id);
 		},
 	},
 });

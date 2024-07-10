@@ -12,3 +12,12 @@ export enum Type {
 	Danger = 'danger',
 	Default = 'default',
 }
+
+export enum Justify {
+	Start = 'start',
+	Center = 'center',
+	End = 'end',
+	SpaceBetween = 'space-between',
+	SpaceAround = 'space-around',
+	SpaceEvenly = 'space-evenly',
+}

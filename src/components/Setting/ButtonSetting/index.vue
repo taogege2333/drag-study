@@ -34,11 +34,11 @@ defineOptions({
 import {ButtonWidgetType} from '@/types/button';
 import {ref, computed} from 'vue';
 import {Type, Size} from '@/types/types';
-import {useSettingForm} from '@/hooks/useSettingForm';
+import {useUpdateProps} from '@/hooks/useUpdateProps';
 
-const {widget} = defineProps<{widget: ButtonWidgetType}>();
-const props = computed(() => widget.props);
-const form = ref({...props.value});
+const props = defineProps<{widget: ButtonWidgetType}>();
+const widget = computed(() => props.widget);
+const form = ref({...widget.value.props});
 const typeOptions = ref([
 	{label: 'primary', value: Type.Primary},
 	{label: 'success', value: Type.Success},
@@ -54,5 +54,5 @@ const sizeOptions = ref([
 	{label: 'large', value: Size.Large},
 ]);
 
-useSettingForm(form, widget.id as string);
+useUpdateProps(widget.value.id as string, widget.value, form);
 </script>

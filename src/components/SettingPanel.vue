@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<component
-			v-if="currentWidget"
+			v-if="currentWidget && currentWidget.settingComponent"
 			:is="currentWidget?.settingComponent"
 			:widget="currentWidget"
 			:key="currentWidget.id" />

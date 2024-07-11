@@ -1,4 +1,5 @@
 import {useDesignerStore} from '@/pinia/modules/designer';
+import {WidgetType} from '@/types/designer';
 import {watch} from 'vue';
 
 /**
@@ -6,12 +7,12 @@ import {watch} from 'vue';
  * @param form
  * @param id
  */
-export function useSettingForm(form: any, id: string) {
+export function useUpdateProps(id: string, widget: WidgetType, form: any) {
 	const designer = useDesignerStore();
 	watch(
 		form,
 		(newValue) => {
-			designer.updateWidgetProps(id, newValue);
+			designer.updateWidget(id, {...widget, props: newValue});
 		},
 		{deep: true},
 	);

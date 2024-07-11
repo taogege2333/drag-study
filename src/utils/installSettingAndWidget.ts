@@ -1,4 +1,4 @@
-const modules = import.meta.glob(
+const modules: any = import.meta.glob(
 	['../components/Setting/**/*.vue', '../components/Widget/**/*.vue'],
 	{
 		eager: true,

@@ -23,13 +23,13 @@ defineOptions({
 });
 
 import {ref, computed} from 'vue';
-import {useSettingForm} from '@/hooks/useSettingForm';
+import {useUpdateProps} from '@/hooks/useUpdateProps';
 import {RowWidgetType} from '@/types/row';
 import {Justify} from '@/types/types';
 
-const {widget} = defineProps<{widget: RowWidgetType}>();
-const props = computed(() => widget.props);
-const form = ref({...props.value});
+const props = defineProps<{widget: RowWidgetType}>();
+const widget = computed(() => props.widget);
+const form = ref({...widget.value.props});
 
 const justifyOptions = [
 	{label: 'start', value: Justify.Start},
@@ -39,5 +39,5 @@ const justifyOptions = [
 	{label: 'space-between', value: Justify.SpaceBetween},
 ];
 
-useSettingForm(form, widget.id as string);
+useUpdateProps(widget.value.id as string, widget.value, form);
 </script>

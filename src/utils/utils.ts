@@ -1,10 +1,10 @@
-import {WidgetType} from '@/types/designer';
+import {ContainerWidgetType, WidgetType} from '@/types/designer';
 import {cloneDeep} from 'lodash-es';
-import {CHILD} from '@/data/index';
+import {CHILD, LAYOUT} from '@/data/index';
 
-// 根据组件名获取子组件
-const getChildWidget = (widgetName: string): WidgetType => {
-	return CHILD.find((item) => item.name === widgetName) as WidgetType;
+// 根据组件名获取组件
+const getWidgetByName = (list: WidgetType[], widgetName: string): WidgetType => {
+	return list.find((item) => item.name === widgetName) as WidgetType;
 };
 
 // 生成id;
@@ -21,11 +21,112 @@ export const clone = (widget: WidgetType) => {
 	// 如果是row组件，添加3个col
 	if (widgetCopy.name === 'Row') {
 		widgetCopy.children = new Array(3).fill(0).map(() => ({
-			...cloneDeep(getChildWidget('Col')),
+			...cloneDeep(getWidgetByName(CHILD.components, 'Col')),
 			id: `Col-${generateId()}`,
 		}));
 	}
+	if (widgetCopy.name === 'Container') {
+		widgetCopy.layouts = generateLayoutData();
+		const layout = widgetCopy.layouts[(widgetCopy as ContainerWidgetType).defaultLayout];
+		widgetCopy.props = layout.props;
+		widgetCopy.children = layout.children;
+	}
 	return widgetCopy;
+};
+
+// 生成布局数据
+export const generateLayoutData = () => {
+	return [
+		{
+			props: {
+				direction: 'vertical',
+			},
+			children: [
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+			],
+		},
+		{
+			props: {
+				direction: 'vertical',
+			},
+			children: [
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Footer')), id: `Footer-${generateId()}`},
+			],
+		},
+		{
+			props: {
+				direction: 'horizontal',
+			},
+			children: [
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+			],
+		},
+		{
+			props: {
+				direction: 'horizontal',
+			},
+			children: [
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
+				{
+					...cloneDeep(getWidgetByName(LAYOUT.components, 'Container')),
+					id: `Container-${generateId()}`,
+					props: {
+						direction: 'vertical',
+					},
+					children: [
+						{
+							...cloneDeep(getWidgetByName(CHILD.components, 'Header')),
+							id: `Header-${generateId()}`,
+						},
+						{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+					],
+				},
+			],
+		},
+		{
+			props: {
+				direction: 'vertical',
+			},
+			children: [
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
+				{
+					...cloneDeep(getWidgetByName(LAYOUT.components, 'Container')),
+					id: `Container-${generateId()}`,
+					props: {
+						direction: 'horizontal',
+					},
+					children: [
+						{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
+						{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+					],
+				},
+			],
+		},
+		{
+			props: {
+				direction: 'vertical',
+			},
+			children: [
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
+				{
+					...cloneDeep(getWidgetByName(LAYOUT.components, 'Container')),
+					id: `Container-${generateId()}`,
+					props: {
+						direction: 'horizontal',
+					},
+					children: [
+						{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
+						{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+					],
+				},
+				{...cloneDeep(getWidgetByName(CHILD.components, 'Footer')), id: `Footer-${generateId()}`},
+			],
+		},
+	];
 };
 
 /**
@@ -51,29 +152,29 @@ export const getWidgetById = (widgets: WidgetType[], id: string): WidgetType | n
 };
 
 /**
- * 使用递归根据id更新组件的props
+ * 使用递归根据id更新组件
  * @param widgets
  * @param id
  * @param props
  * @returns
  */
-export const updateWidgetProps = (
+export const updateWidget = (
 	widgets: WidgetType[],
 	id: string,
-	props: any,
+	widget: WidgetType,
 ): WidgetType[] | undefined => {
 	if (widgets.length === 0) return;
 	const widgetsCopy = cloneDeep(widgets);
 	for (let i = 0; i < widgetsCopy.length; i++) {
-		const widget = widgetsCopy[i];
-		if (widget.id === id) {
-			widget.props = props;
+		const item = widgetsCopy[i];
+		if (item.id === id) {
+			widgetsCopy[i] = widget;
 			return widgetsCopy;
 		}
-		if (widget.children) {
-			const temp = updateWidgetProps(widget.children, id, props);
+		if (item.children) {
+			const temp = updateWidget(item.children, id, widget);
 			if (temp) {
-				widget.children = temp;
+				item.children = temp;
 				return widgetsCopy;
 			}
 		}

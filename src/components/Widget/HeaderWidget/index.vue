@@ -1,22 +1,22 @@
 <template>
-	<el-col
+	<el-header
 		v-bind="widget.props"
 		class="border border-slate-300 border-dashed"
 		:class="{selected: currentWidget?.id === widget.id}"
 		@click.stop="handleClick">
 		<DragFrame :widgets="widget.children" :id="widget.id"></DragFrame>
-	</el-col>
+	</el-header>
 </template>
 
 <script setup lang="ts">
 defineOptions({
-	name: 'ColWidget',
+	name: 'HeaderWidget',
 });
 
 import DragFrame from '@/components/DragFrame.vue';
 import {useWidget} from '@/hooks/useWidget';
-import {ColWidgetType} from '@/types/col';
+import {LayoutWidgetType} from '@/types/designer';
 
-const props = defineProps<{widget: ColWidgetType}>();
-const {widget, currentWidget, handleClick} = useWidget<ColWidgetType>(props);
+const props = defineProps<{widget: LayoutWidgetType}>();
+const {widget, currentWidget, handleClick} = useWidget<LayoutWidgetType>(props);
 </script>

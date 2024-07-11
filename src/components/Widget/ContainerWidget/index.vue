@@ -1,7 +1,7 @@
 <template>
-	<el-row
+	<el-container
 		v-bind="widget.props"
-		class="h-full max-h-20 border border-slate-300 border-dashed"
+		class="w-full h-full border border-slate-300 border-dashed"
 		:class="{selected: currentWidget?.id === widget.id}"
 		@click.stop="handleClick">
 		<component
@@ -9,17 +9,17 @@
 			:key="item.id"
 			:is="item.widgetComponent"
 			:widget="item" />
-	</el-row>
+	</el-container>
 </template>
 
 <script setup lang="ts">
 defineOptions({
-	name: 'RowWidget',
+	name: 'ContainerWidget',
 });
 
 import {useWidget} from '@/hooks/useWidget';
-import {RowWidgetType} from '@/types/row';
+import {ContainerWidgetType} from '@/types/designer';
 
-const props = defineProps<{widget: RowWidgetType}>();
-const {widget, currentWidget, handleClick} = useWidget<RowWidgetType>(props);
+const props = defineProps<{widget: ContainerWidgetType}>();
+const {widget, currentWidget, handleClick} = useWidget<ContainerWidgetType>(props);
 </script>

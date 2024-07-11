@@ -1,4 +1,4 @@
-import {WidgetType} from './designer';
+import {LayoutWidgetType} from './designer';
 import {Justify} from './types';
 
 export interface RowPropsType {
@@ -6,6 +6,6 @@ export interface RowPropsType {
 	justify: Justify;
 }
 
-export interface RowWidgetType extends WidgetType {
+export interface RowWidgetType extends LayoutWidgetType {
 	props: RowPropsType;
 }

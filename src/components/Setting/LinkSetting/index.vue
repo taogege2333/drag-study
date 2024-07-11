@@ -25,11 +25,11 @@ defineOptions({
 import {ref, computed} from 'vue';
 import {LinkWidgetType} from '@/types/link';
 import {Type} from '@/types/types';
-import {useSettingForm} from '@/hooks/useSettingForm';
+import {useUpdateProps} from '@/hooks/useUpdateProps';
 
-const {widget} = defineProps<{widget: LinkWidgetType}>();
-const props = computed(() => widget.props);
-const form = ref({...props.value});
+const props = defineProps<{widget: LinkWidgetType}>();
+const widget = computed(() => props.widget);
+const form = ref({...widget.value.props});
 
 const typeOptions = ref([
 	{label: 'primary', value: Type.Primary},
@@ -40,5 +40,5 @@ const typeOptions = ref([
 	{label: 'default', value: Type.Default},
 ]);
 
-useSettingForm(form, widget.id as string);
+useUpdateProps(widget.value.id as string, widget.value, form);
 </script>

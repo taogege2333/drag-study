@@ -23,12 +23,12 @@ defineOptions({
 });
 
 import {ref, computed} from 'vue';
-import {useSettingForm} from '@/hooks/useSettingForm';
+import {useUpdateProps} from '@/hooks/useUpdateProps';
 import {ColWidgetType} from '@/types/col';
 
-const {widget} = defineProps<{widget: ColWidgetType}>();
-const props = computed(() => widget.props);
-const form = ref({...props.value});
+const props = defineProps<{widget: ColWidgetType}>();
+const widget = computed(() => props.widget);
+const form = ref({...widget.value.props});
 
-useSettingForm(form, widget.id as string);
+useUpdateProps(widget.value.id as string, widget.value, form);
 </script>

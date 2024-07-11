@@ -1,4 +1,4 @@
-import {WidgetType} from './designer';
+import {LayoutWidgetType} from './designer';
 
 export interface ColPropsType {
 	span: number;
@@ -7,6 +7,6 @@ export interface ColPropsType {
 	pull: number;
 }
 
-export interface ColWidgetType extends WidgetType {
+export interface ColWidgetType extends LayoutWidgetType {
 	props: ColPropsType;
 }

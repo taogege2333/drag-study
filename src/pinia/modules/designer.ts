@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import {cloneDeep} from 'lodash-es';
 import {WidgetType} from '@/types/designer';
-import {generateId, getWidgetById, updateWidgetChildren, updateWidgetProps} from '@/utils/utils';
+import {generateId, getWidgetById, updateWidgetChildren, updateWidget} from '@/utils/utils';
 
 export const useDesignerStore = defineStore('designer', {
 	state: () => ({
@@ -10,12 +10,12 @@ export const useDesignerStore = defineStore('designer', {
 	}),
 	actions: {
 		/**
-		 * 设置画布中的组件
+		 * 设置组件或子组件
 		 * @param widgets
 		 */
-		setWidgets(widgets: WidgetType[], id: string | undefined) {
-			if (id) {
-				const temp = updateWidgetChildren(this.widgets, id, widgets);
+		setWidgets(widgets: WidgetType[], parentId: string | undefined) {
+			if (parentId) {
+				const temp = updateWidgetChildren(this.widgets, parentId, widgets);
 				if (temp) {
 					this.widgets = temp;
 				}
@@ -28,8 +28,8 @@ export const useDesignerStore = defineStore('designer', {
 		 * @param id
 		 * @param props
 		 */
-		updateWidgetProps(id: string, props: any) {
-			const temp = updateWidgetProps(this.widgets, id, props);
+		updateWidget(id: string, widget: WidgetType) {
+			const temp = updateWidget(this.widgets, id, widget);
 			if (temp) {
 				this.widgets = temp;
 			}

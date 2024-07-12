@@ -2,14 +2,17 @@
 	<VueDraggable
 		class="w-full h-full"
 		v-model="children"
-		group="widget"
+		:group="{name: 'widget'}"
 		ghostClass="ghost"
 		:animation="150"
-		@add="onAdd">
+		@add="onAdd"
+		@move="onMove"
+		:data-name="name">
 		<component
 			v-for="widget in children"
 			:key="widget.id"
 			:is="widget.widgetComponent"
+			:data-name="widget.name"
 			:widget="widget" />
 	</VueDraggable>
 </template>
@@ -19,9 +22,10 @@ import {useDesignerStore} from '@/pinia/modules/designer';
 import {WidgetType} from '@/types/designer';
 import {computed, nextTick} from 'vue';
 import {VueDraggable, type SortableEvent} from 'vue-draggable-plus';
+import {checkMove} from '@/utils/utils';
 
 const designer = useDesignerStore();
-const props = defineProps<{widgets: WidgetType[]; id?: string}>();
+const props = defineProps<{widgets: WidgetType[]; id?: string; name?: string}>();
 const children = computed({
 	get() {
 		// 直接监听props.widgets，不能使用解构，解构出来的widgets不具有响应式，无法监听变化
@@ -36,5 +40,11 @@ const onAdd = (e: SortableEvent) => {
 	nextTick(() => {
 		designer.setCurrentWidget(children.value[e.newIndex as number].id);
 	});
+};
+
+const onMove = (e: SortableEvent) => {
+	const target = e.dragged.dataset.name;
+	const to = e.to.dataset.name;
+	return checkMove(target, to);
 };
 </script>

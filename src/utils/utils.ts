@@ -191,3 +191,8 @@ export const updateWidgetChildren = (
 		}
 	}
 };
+
+export const checkMove = (target: string, to: string | undefined) => {
+	console.log(target, to);
+	return true;
+};

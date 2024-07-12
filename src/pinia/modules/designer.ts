@@ -1,5 +1,4 @@
 import {defineStore} from 'pinia';
-import {cloneDeep} from 'lodash-es';
 import {WidgetType} from '@/types/designer';
 import {generateId, getWidgetById, updateWidgetChildren, updateWidget} from '@/utils/utils';
 
@@ -15,12 +14,9 @@ export const useDesignerStore = defineStore('designer', {
 		 */
 		setWidgets(widgets: WidgetType[], parentId: string | undefined) {
 			if (parentId) {
-				const temp = updateWidgetChildren(this.widgets, parentId, widgets);
-				if (temp) {
-					this.widgets = temp;
-				}
+				updateWidgetChildren(this.widgets, parentId, widgets);
 			} else {
-				this.widgets = cloneDeep(widgets);
+				this.widgets = widgets;
 			}
 		},
 		/**
@@ -41,7 +37,7 @@ export const useDesignerStore = defineStore('designer', {
 		 */
 		pushWidget(widget: WidgetType) {
 			const id = `${widget.name}-${generateId()}`;
-			this.widgets = [...this.widgets, cloneDeep({...widget, id})];
+			this.widgets.push({...widget, id});
 			return id;
 		},
 		/**

@@ -41,90 +41,90 @@ export const generateLayoutData = () => {
 			props: {
 				direction: 'vertical',
 			},
-			children: [
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
-			],
+			children: cloneDeep([
+				{...getWidgetByName(CHILD.components, 'Header'), id: `Header-${generateId()}`},
+				{...getWidgetByName(CHILD.components, 'Main'), id: `Main-${generateId()}`},
+			]),
 		},
 		{
 			props: {
 				direction: 'vertical',
 			},
-			children: [
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Footer')), id: `Footer-${generateId()}`},
-			],
+			children: cloneDeep([
+				{...getWidgetByName(CHILD.components, 'Header'), id: `Header-${generateId()}`},
+				{...getWidgetByName(CHILD.components, 'Main'), id: `Main-${generateId()}`},
+				{...getWidgetByName(CHILD.components, 'Footer'), id: `Footer-${generateId()}`},
+			]),
 		},
 		{
 			props: {
 				direction: 'horizontal',
 			},
-			children: [
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
-			],
+			children: cloneDeep([
+				{...getWidgetByName(CHILD.components, 'Aside'), id: `Aside-${generateId()}`},
+				{...getWidgetByName(CHILD.components, 'Main'), id: `Main-${generateId()}`},
+			]),
 		},
 		{
 			props: {
 				direction: 'horizontal',
 			},
-			children: [
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
+			children: cloneDeep([
+				{...getWidgetByName(CHILD.components, 'Aside'), id: `Aside-${generateId()}`},
 				{
-					...cloneDeep(getWidgetByName(LAYOUT.components, 'Container')),
+					...getWidgetByName(LAYOUT.components, 'Container'),
 					id: `Container-${generateId()}`,
 					props: {
 						direction: 'vertical',
 					},
 					children: [
 						{
-							...cloneDeep(getWidgetByName(CHILD.components, 'Header')),
+							...getWidgetByName(CHILD.components, 'Header'),
 							id: `Header-${generateId()}`,
 						},
-						{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+						{...getWidgetByName(CHILD.components, 'Main'), id: `Main-${generateId()}`},
 					],
 				},
-			],
+			]),
 		},
 		{
 			props: {
 				direction: 'vertical',
 			},
-			children: [
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
+			children: cloneDeep([
+				{...getWidgetByName(CHILD.components, 'Header'), id: `Header-${generateId()}`},
 				{
-					...cloneDeep(getWidgetByName(LAYOUT.components, 'Container')),
+					...getWidgetByName(LAYOUT.components, 'Container'),
 					id: `Container-${generateId()}`,
 					props: {
 						direction: 'horizontal',
 					},
 					children: [
-						{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
-						{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+						{...getWidgetByName(CHILD.components, 'Aside'), id: `Aside-${generateId()}`},
+						{...getWidgetByName(CHILD.components, 'Main'), id: `Main-${generateId()}`},
 					],
 				},
-			],
+			]),
 		},
 		{
 			props: {
 				direction: 'vertical',
 			},
-			children: [
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Header')), id: `Header-${generateId()}`},
+			children: cloneDeep([
+				{...getWidgetByName(CHILD.components, 'Header'), id: `Header-${generateId()}`},
 				{
-					...cloneDeep(getWidgetByName(LAYOUT.components, 'Container')),
+					...getWidgetByName(LAYOUT.components, 'Container'),
 					id: `Container-${generateId()}`,
 					props: {
 						direction: 'horizontal',
 					},
 					children: [
-						{...cloneDeep(getWidgetByName(CHILD.components, 'Aside')), id: `Aside-${generateId()}`},
-						{...cloneDeep(getWidgetByName(CHILD.components, 'Main')), id: `Main-${generateId()}`},
+						{...getWidgetByName(CHILD.components, 'Aside'), id: `Aside-${generateId()}`},
+						{...getWidgetByName(CHILD.components, 'Main'), id: `Main-${generateId()}`},
 					],
 				},
-				{...cloneDeep(getWidgetByName(CHILD.components, 'Footer')), id: `Footer-${generateId()}`},
-			],
+				{...getWidgetByName(CHILD.components, 'Footer'), id: `Footer-${generateId()}`},
+			]),
 		},
 	];
 };
@@ -137,11 +137,10 @@ export const generateLayoutData = () => {
  */
 export const getWidgetById = (widgets: WidgetType[], id: string): WidgetType | null => {
 	if (widgets.length === 0) return null;
-	const widgetsCopy = cloneDeep(widgets);
-	for (let i = 0; i < widgetsCopy.length; i++) {
-		const widget = widgetsCopy[i];
+	for (let i = 0; i < widgets.length; i++) {
+		const widget = widgets[i];
 		if (widget.id === id) {
-			return widget;
+			return cloneDeep(widget);
 		}
 		if (widget.children) {
 			const res = getWidgetById(widget.children, id);
@@ -164,19 +163,13 @@ export const updateWidget = (
 	widget: WidgetType,
 ): WidgetType[] | undefined => {
 	if (widgets.length === 0) return;
-	const widgetsCopy = cloneDeep(widgets);
-	for (let i = 0; i < widgetsCopy.length; i++) {
-		const item = widgetsCopy[i];
+	for (let i = 0; i < widgets.length; i++) {
+		const item = widgets[i];
 		if (item.id === id) {
-			widgetsCopy[i] = widget;
-			return widgetsCopy;
+			widgets[i] = cloneDeep(widget);
 		}
 		if (item.children) {
-			const temp = updateWidget(item.children, id, widget);
-			if (temp) {
-				item.children = temp;
-				return widgetsCopy;
-			}
+			updateWidget(item.children, id, widget);
 		}
 	}
 };
@@ -188,19 +181,13 @@ export const updateWidgetChildren = (
 	children: WidgetType[],
 ): WidgetType[] | undefined => {
 	if (widgets.length === 0) return;
-	const widgetsCopy = cloneDeep(widgets);
-	for (let i = 0; i < widgetsCopy.length; i++) {
-		const widget = widgetsCopy[i];
+	for (let i = 0; i < widgets.length; i++) {
+		const widget = widgets[i];
 		if (widget.id === id) {
-			widget.children = children;
-			return widgetsCopy;
+			widget.children = cloneDeep(children);
 		}
 		if (widget.children) {
-			const temp = updateWidgetChildren(widget.children, id, children);
-			if (temp) {
-				widget.children = temp;
-				return widgetsCopy;
-			}
+			updateWidgetChildren(widget.children, id, children);
 		}
 	}
 };

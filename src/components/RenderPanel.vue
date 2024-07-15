@@ -1,5 +1,5 @@
 <template>
-	<DragFrame :widgets="widgets"></DragFrame>
+	<drag-frame :widgets="widgets"></drag-frame>
 </template>
 
 <script setup lang="ts">

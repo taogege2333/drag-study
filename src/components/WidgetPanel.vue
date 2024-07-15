@@ -5,7 +5,7 @@
 		v-model="activeNames"
 		:accordion="false">
 		<el-collapse-item :title="widgetClassify.title" :name="widgetClassify.name">
-			<VueDraggable
+			<vue-draggable
 				v-model="widgetClassify.list"
 				:group="{name: 'widget', pull: 'clone', put: false}"
 				:animation="150"
@@ -21,7 +21,7 @@
 					@dblclick="handleDblClick(item)">
 					{{ item.name }}
 				</div>
-			</VueDraggable>
+			</vue-draggable>
 		</el-collapse-item>
 	</el-collapse>
 </template>
@@ -31,7 +31,7 @@ import {ref} from 'vue';
 import {LAYOUT, BASE} from '@/data';
 import {useDesignerStore} from '@/pinia/modules/designer';
 import {WidgetType} from '@/types/designer';
-import {VueDraggable, type SortableEvent} from 'vue-draggable-plus';
+import {VueDraggable} from 'vue-draggable-plus';
 import {clone, checkMove} from '@/utils/utils';
 
 const designer = useDesignerStore();
@@ -54,7 +54,7 @@ const handleDblClick = (item: WidgetType) => {
 	designer.setCurrentWidget(id);
 };
 
-const onMove = (e: SortableEvent) => {
+const onMove = (e: any) => {
 	const target = e.dragged.dataset.name;
 	const to = e.to.dataset.name;
 	return checkMove(target, to);

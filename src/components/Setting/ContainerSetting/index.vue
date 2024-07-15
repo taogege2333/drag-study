@@ -2,51 +2,51 @@
 	<div>
 		<ul>
 			<li @click="handleClick(0)" :class="{select: defaultLayout === 0}">
-				<CustomContainer direction="vertical">
-					<CustomHeader></CustomHeader>
-					<CustomMain></CustomMain>
-				</CustomContainer>
+				<custom-container direction="vertical">
+					<custom-header></custom-header>
+					<custom-main></custom-main>
+				</custom-container>
 			</li>
 			<li @click="handleClick(1)" :class="{select: defaultLayout === 1}">
-				<CustomContainer direction="vertical">
-					<CustomHeader></CustomHeader>
-					<CustomMain></CustomMain>
-					<CustomFooter></CustomFooter>
-				</CustomContainer>
+				<custom-container direction="vertical">
+					<custom-header></custom-header>
+					<custom-main></custom-main>
+					<custom-footer></custom-footer>
+				</custom-container>
 			</li>
 			<li @click="handleClick(2)" :class="{select: defaultLayout === 2}">
-				<CustomContainer>
-					<CustomAside></CustomAside>
-					<CustomMain></CustomMain>
-				</CustomContainer>
+				<custom-container>
+					<custom-aside></custom-aside>
+					<custom-main></custom-main>
+				</custom-container>
 			</li>
 			<li @click="handleClick(3)" :class="{select: defaultLayout === 3}">
-				<CustomContainer>
-					<CustomAside></CustomAside>
-					<CustomContainer direction="vertical">
-						<CustomHeader></CustomHeader>
-						<CustomMain></CustomMain>
-					</CustomContainer>
-				</CustomContainer>
+				<custom-container>
+					<custom-aside></custom-aside>
+					<custom-container direction="vertical">
+						<custom-header></custom-header>
+						<custom-main></custom-main>
+					</custom-container>
+				</custom-container>
 			</li>
 			<li @click="handleClick(4)" :class="{select: defaultLayout === 4}">
-				<CustomContainer direction="vertical">
-					<CustomHeader></CustomHeader>
-					<CustomContainer>
-						<CustomAside></CustomAside>
-						<CustomMain></CustomMain>
-					</CustomContainer>
-				</CustomContainer>
+				<custom-container direction="vertical">
+					<custom-header></custom-header>
+					<custom-container>
+						<custom-aside></custom-aside>
+						<custom-main></custom-main>
+					</custom-container>
+				</custom-container>
 			</li>
 			<li @click="handleClick(5)" :class="{select: defaultLayout === 5}">
-				<CustomContainer direction="vertical">
-					<CustomHeader></CustomHeader>
-					<CustomContainer>
-						<CustomAside></CustomAside>
-						<CustomMain></CustomMain>
-					</CustomContainer>
-					<CustomFooter></CustomFooter>
-				</CustomContainer>
+				<custom-container direction="vertical">
+					<custom-header></custom-header>
+					<custom-container>
+						<custom-aside></custom-aside>
+						<custom-main></custom-main>
+					</custom-container>
+					<custom-footer></custom-footer>
+				</custom-container>
 			</li>
 		</ul>
 	</div>

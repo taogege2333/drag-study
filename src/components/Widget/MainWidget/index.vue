@@ -4,7 +4,7 @@
 		class="border border-slate-300 border-dashed"
 		:class="{selected: currentWidget?.id === widget.id}"
 		@click.stop="handleClick">
-		<DragFrame :widgets="widget.children" :id="widget.id" :name="widget.name"></DragFrame>
+		<drag-frame :widgets="widget.children" :id="widget.id" :name="widget.name"></drag-frame>
 	</el-main>
 </template>
 

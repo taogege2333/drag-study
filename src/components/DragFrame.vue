@@ -1,5 +1,5 @@
 <template>
-	<VueDraggable
+	<vue-draggable
 		class="w-full h-full"
 		v-model="children"
 		:group="{name: 'widget'}"
@@ -14,14 +14,15 @@
 			:is="widget.widgetComponent"
 			:data-name="widget.name"
 			:widget="widget" />
-	</VueDraggable>
+	</vue-draggable>
 </template>
 
 <script setup lang="ts">
 import {useDesignerStore} from '@/pinia/modules/designer';
 import {WidgetType} from '@/types/designer';
 import {computed, nextTick} from 'vue';
-import {VueDraggable, type SortableEvent} from 'vue-draggable-plus';
+import {VueDraggable} from 'vue-draggable-plus';
+import type {SortableEvent} from 'vue-draggable-plus';
 import {checkMove} from '@/utils/utils';
 
 const designer = useDesignerStore();
@@ -42,7 +43,7 @@ const onAdd = (e: SortableEvent) => {
 	});
 };
 
-const onMove = (e: SortableEvent) => {
+const onMove = (e: any) => {
 	const target = e.dragged.dataset.name;
 	const to = e.to.dataset.name;
 	return checkMove(target, to);

@@ -38,6 +38,9 @@ declare module 'vue' {
     ElOption: typeof import('element-plus/es')['ElOption']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElTree: typeof import('element-plus/es')['ElTree']
     FooterSetting: typeof import('./src/components/Setting/FooterSetting/index.vue')['default']
     FooterWidget: typeof import('./src/components/Widget/FooterWidget/index.vue')['default']
     HeaderSetting: typeof import('./src/components/Setting/HeaderSetting/index.vue')['default']
@@ -49,7 +52,8 @@ declare module 'vue' {
     RowSetting: typeof import('./src/components/Setting/RowSetting/index.vue')['default']
     RowWidget: typeof import('./src/components/Widget/RowWidget/index.vue')['default']
     SettingPanel: typeof import('./src/components/SettingPanel.vue')['default']
-    Tools: typeof import('./src/components/Tools.vue')['default']
+    ToolsPanel: typeof import('./src/components/ToolsPanel.vue')['default']
+    TreePanel: typeof import('./src/components/TreePanel.vue')['default']
     WidgetPanel: typeof import('./src/components/WidgetPanel.vue')['default']
   }
 }

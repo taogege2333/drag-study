@@ -9,6 +9,7 @@ export interface WidgetType {
 	defaultLayout?: number;
 	layouts?: any[];
 	disbaleRemove?: boolean;
+	disableSetting?: boolean;
 }
 
 export interface LayoutWidgetType extends WidgetType {

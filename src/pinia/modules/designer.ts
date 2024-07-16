@@ -1,6 +1,12 @@
 import {defineStore} from 'pinia';
 import {WidgetType} from '@/types/designer';
-import {generateId, getWidgetById, updateWidgetChildren, updateWidget} from '@/utils/utils';
+import {
+	generateId,
+	getWidgetById,
+	updateWidgetChildren,
+	updateWidget,
+	removeWidget,
+} from '@/utils/utils';
 
 export const useDesignerStore = defineStore('designer', {
 	state: () => ({
@@ -8,6 +14,13 @@ export const useDesignerStore = defineStore('designer', {
 		currentWidget: null as WidgetType | null,
 	}),
 	actions: {
+		/**
+		 * 设置当前选中的组件
+		 * @param id
+		 */
+		setCurrentWidget(id: string = '') {
+			this.currentWidget = getWidgetById(this.widgets, id);
+		},
 		/**
 		 * 设置组件或子组件
 		 * @param widgets
@@ -25,10 +38,7 @@ export const useDesignerStore = defineStore('designer', {
 		 * @param props
 		 */
 		updateWidget(id: string, widget: WidgetType) {
-			const temp = updateWidget(this.widgets, id, widget);
-			if (temp) {
-				this.widgets = temp;
-			}
+			updateWidget(this.widgets, id, widget);
 		},
 		/**
 		 * 在尾部添加组件
@@ -40,12 +50,11 @@ export const useDesignerStore = defineStore('designer', {
 			this.widgets.push({...widget, id});
 			return id;
 		},
-		/**
-		 * 设置当前选中的组件
-		 * @param id
-		 */
-		setCurrentWidget(id: string = '') {
-			this.currentWidget = getWidgetById(this.widgets, id);
+		removeWidget() {
+			if (this.currentWidget) {
+				removeWidget(this.widgets, this.currentWidget.id as string);
+				this.currentWidget = null;
+			}
 		},
 	},
 });

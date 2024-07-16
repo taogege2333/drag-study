@@ -1,5 +1,7 @@
 <template>
-	<drag-frame :widgets="widgets"></drag-frame>
+	<drag-frame
+		:widgets="widgets"
+		style="padding: var(--el-main-padding); overflow: auto"></drag-frame>
 </template>
 
 <script setup lang="ts">

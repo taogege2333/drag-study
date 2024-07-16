@@ -49,6 +49,7 @@ declare module 'vue' {
     RowSetting: typeof import('./src/components/Setting/RowSetting/index.vue')['default']
     RowWidget: typeof import('./src/components/Widget/RowWidget/index.vue')['default']
     SettingPanel: typeof import('./src/components/SettingPanel.vue')['default']
+    Tools: typeof import('./src/components/Tools.vue')['default']
     WidgetPanel: typeof import('./src/components/WidgetPanel.vue')['default']
   }
 }

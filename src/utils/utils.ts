@@ -157,21 +157,20 @@ export const getWidgetById = (widgets: WidgetType[], id: string): WidgetType | n
  * @param props
  * @returns
  */
-export const updateWidget = (
-	widgets: WidgetType[],
-	id: string,
-	widget: WidgetType,
-): WidgetType[] | undefined => {
-	if (widgets.length === 0) return;
+export const updateWidget = (widgets: WidgetType[], id: string, widget: WidgetType): boolean => {
+	if (widgets.length === 0) return false;
 	for (let i = 0; i < widgets.length; i++) {
 		const item = widgets[i];
 		if (item.id === id) {
 			widgets[i] = cloneDeep(widget);
+			return true;
 		}
 		if (item.children) {
-			updateWidget(item.children, id, widget);
+			const res = updateWidget(item.children, id, widget);
+			if (res) return true;
 		}
 	}
+	return false;
 };
 
 // 使用递归根据id更新组件的children
@@ -179,17 +178,42 @@ export const updateWidgetChildren = (
 	widgets: WidgetType[],
 	id: string,
 	children: WidgetType[],
-): WidgetType[] | undefined => {
-	if (widgets.length === 0) return;
+): boolean => {
+	if (widgets.length === 0) return false;
 	for (let i = 0; i < widgets.length; i++) {
 		const widget = widgets[i];
 		if (widget.id === id) {
 			widget.children = cloneDeep(children);
+			return true;
 		}
 		if (widget.children) {
-			updateWidgetChildren(widget.children, id, children);
+			const res = updateWidgetChildren(widget.children, id, children);
+			if (res) return true;
 		}
 	}
+	return false;
+};
+
+/**
+ * 删除组件
+ * @param widgets
+ * @param id
+ * @returns
+ */
+export const removeWidget = (widgets: WidgetType[], id: string): boolean => {
+	if (widgets.length === 0) return false;
+	for (let i = 0; i < widgets.length; i++) {
+		const widget = widgets[i];
+		if (widget.id === id) {
+			widgets.splice(i, 1);
+			return true;
+		}
+		if (widget.children) {
+			const res = removeWidget(widget.children, id);
+			if (res) return true;
+		}
+	}
+	return false;
 };
 
 export const checkMove = (target: string, to: string | undefined) => {

@@ -3,7 +3,10 @@
 		<el-header>1</el-header>
 		<el-container>
 			<el-aside><WidgetPanel /></el-aside>
-			<el-main><RenderPanel /></el-main>
+			<el-container>
+				<el-header class="tools"><Tools /></el-header>
+				<el-main><RenderPanel /></el-main>
+			</el-container>
 			<el-aside><SettingPanel /></el-aside>
 		</el-container>
 	</el-container>
@@ -13,6 +16,7 @@
 import WidgetPanel from '@/components/WidgetPanel.vue';
 import SettingPanel from '@/components/SettingPanel.vue';
 import RenderPanel from '@/components/RenderPanel.vue';
+import Tools from '@/components/Tools.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -35,6 +39,13 @@ import RenderPanel from '@/components/RenderPanel.vue';
 
 .el-main {
 	@include common;
+	height: calc(100vh - 140px);
+	padding: 0;
 	margin: 0 10px;
+}
+
+.tools {
+	margin-right: 10px;
+	margin-left: 10px;
 }
 </style>

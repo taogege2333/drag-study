@@ -8,6 +8,7 @@ export interface WidgetType {
 	children?: WidgetType[];
 	defaultLayout?: number;
 	layouts?: any[];
+	disbaleRemove?: boolean;
 }
 
 export interface LayoutWidgetType extends WidgetType {

@@ -26,6 +26,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 				height: '60px',
 			},
 			children: [],
+			disbaleRemove: true,
 		},
 		{
 			name: 'Aside',
@@ -36,6 +37,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 				width: '200px',
 			},
 			children: [],
+			disbaleRemove: true,
 		},
 		{
 			name: 'Main',
@@ -44,6 +46,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 			type: 'layout',
 			props: {},
 			children: [],
+			disbaleRemove: true,
 		},
 		{
 			name: 'Footer',
@@ -54,6 +57,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 				height: '60px',
 			},
 			children: [],
+			disbaleRemove: true,
 		},
 	],
 };

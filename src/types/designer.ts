@@ -3,6 +3,7 @@ export interface WidgetType {
 	name: string;
 	widgetComponent: string;
 	settingComponent: string;
+	renderComponent: string;
 	type: string;
 	props: any;
 	children?: WidgetType[];

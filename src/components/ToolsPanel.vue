@@ -10,17 +10,27 @@
 					@click="desiginer.removeWidget"
 					>删除</el-button
 				>
+				<el-button type="primary" link @click="handleClickPreview">预览</el-button>
 			</el-row>
 		</el-col>
 	</el-row>
+
+	<el-dialog v-model="previewVisible" title="预览" width="60%">
+		<preview-page :widgets="widgets"></preview-page>
+	</el-dialog>
 </template>
 
 <script setup lang="ts">
-import {useDesignerStore} from '@/pinia/modules/designer';
+import {ref} from 'vue';
 import {storeToRefs} from 'pinia';
+import PreviewPage from '@/components/common/PreviewPage.vue';
+import {useDesignerStore} from '@/pinia/modules/designer';
 
 const desiginer = useDesignerStore();
-const {currentWidget} = storeToRefs(desiginer);
+const {currentWidget, widgets} = storeToRefs(desiginer);
+const previewVisible = ref(false);
+
+const handleClickPreview = () => (previewVisible.value = true);
 </script>
 
 <style lang="scss" scoped>

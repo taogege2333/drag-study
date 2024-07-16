@@ -1,5 +1,9 @@
 const modules: any = import.meta.glob(
-	['../components/Setting/**/*.vue', '../components/Widget/**/*.vue'],
+	[
+		'../components/Setting/**/*.vue',
+		'../components/Widget/**/*.vue',
+		'../components/Render/**/*.vue',
+	],
 	{
 		eager: true,
 	},

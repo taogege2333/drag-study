@@ -8,6 +8,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 			name: 'Col',
 			widgetComponent: 'ColWidget',
 			settingComponent: 'ColSetting',
+			renderComponent: 'ColRender',
 			type: 'base',
 			props: {
 				span: 8,
@@ -21,6 +22,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 			name: 'Header',
 			widgetComponent: 'HeaderWidget',
 			settingComponent: 'HeaderSetting',
+			renderComponent: 'HeaderRender',
 			type: 'layout',
 			props: {
 				height: '60px',
@@ -32,6 +34,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 			name: 'Aside',
 			widgetComponent: 'AsideWidget',
 			settingComponent: 'AsideSetting',
+			renderComponent: 'AsideRender',
 			type: 'layout',
 			props: {
 				width: '200px',
@@ -42,7 +45,8 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 		{
 			name: 'Main',
 			widgetComponent: 'MainWidget',
-			settingComponent: 'MainSetting',
+			settingComponent: '',
+			renderComponent: 'MainRender',
 			type: 'layout',
 			props: {},
 			children: [],
@@ -52,6 +56,7 @@ export const CHILD: {type: string; components: WidgetType[]} = {
 			name: 'Footer',
 			widgetComponent: 'FooterWidget',
 			settingComponent: 'FooterSetting',
+			renderComponent: 'FooterRender',
 			type: 'layout',
 			props: {
 				height: '60px',
@@ -69,6 +74,7 @@ export const LAYOUT: {type: string; components: LayoutWidgetType[]} = {
 			name: 'Container',
 			widgetComponent: 'ContainerWidget',
 			settingComponent: 'ContainerSetting',
+			renderComponent: 'ContainerRender',
 			type: 'layout',
 			props: {},
 			children: [],
@@ -79,6 +85,7 @@ export const LAYOUT: {type: string; components: LayoutWidgetType[]} = {
 			name: 'Row',
 			widgetComponent: 'RowWidget',
 			settingComponent: 'RowSetting',
+			renderComponent: 'RowRender',
 			type: 'layout',
 			props: {
 				gutter: 0,
@@ -96,6 +103,7 @@ export const BASE: {type: string; components: WidgetType[]} = {
 			name: 'Button',
 			widgetComponent: 'ButtonWidget',
 			settingComponent: 'ButtonSetting',
+			renderComponent: 'ButtonRender',
 			type: 'base',
 			props: {
 				text: 'Button',
@@ -107,6 +115,7 @@ export const BASE: {type: string; components: WidgetType[]} = {
 			name: 'Link',
 			widgetComponent: 'LinkWidget',
 			settingComponent: 'LinkSetting',
+			renderComponent: 'LinkRender',
 			type: 'base',
 			props: {
 				text: 'Link',

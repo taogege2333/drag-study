@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import {useDesignerStore} from '@/pinia/modules/designer';
-import DragFrame from '@/components/DragFrame.vue';
+import DragFrame from '@/components/common/DragFrame.vue';
 import {storeToRefs} from 'pinia';
 
 const designer = useDesignerStore();

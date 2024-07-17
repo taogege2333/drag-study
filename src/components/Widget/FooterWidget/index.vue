@@ -9,7 +9,7 @@ defineOptions({
 	name: 'FooterWidget',
 });
 
-import DragFrame from '@/components/DragFrame.vue';
+import DragFrame from '@/components/common/DragFrame.vue';
 import {computed} from 'vue';
 import {LayoutWidgetType} from '@/types/designer';
 

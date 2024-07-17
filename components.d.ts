@@ -24,7 +24,7 @@ declare module 'vue' {
     CustomFooter: typeof import('./src/components/common/layout/CustomFooter.vue')['default']
     CustomHeader: typeof import('./src/components/common/layout/CustomHeader.vue')['default']
     CustomMain: typeof import('./src/components/common/layout/CustomMain.vue')['default']
-    DragFrame: typeof import('./src/components/DragFrame.vue')['default']
+    DragFrame: typeof import('./src/components/common/DragFrame.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
@@ -41,6 +41,7 @@ declare module 'vue' {
     ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
@@ -66,6 +67,5 @@ declare module 'vue' {
     ToolsPanel: typeof import('./src/components/ToolsPanel.vue')['default']
     TreePanel: typeof import('./src/components/TreePanel.vue')['default']
     WidgetPanel: typeof import('./src/components/WidgetPanel.vue')['default']
-    WidgetWrapper: typeof import('./src/components/common/WidgetWrapper.vue')['default']
   }
 }

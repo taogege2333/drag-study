@@ -9,7 +9,7 @@ defineOptions({
 	name: 'ColWidget',
 });
 
-import DragFrame from '@/components/DragFrame.vue';
+import DragFrame from '@/components/common/DragFrame.vue';
 import {computed} from 'vue';
 import {ColWidgetType} from '@/types/col';
 

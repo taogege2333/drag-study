@@ -4,9 +4,17 @@ export default {
 		'stylelint-config-standard',
 		'stylelint-config-html/vue',
 		'stylelint-config-standard-scss',
-		'stylelint-config-recommended-vue',
+		'stylelint-config-recommended-vue/scss',
 		'stylelint-config-recommended-scss',
 		'stylelint-config-recess-order',
+	],
+
+	// 自定义规则
+	overrides: [
+		{
+			files: ['**/*.(html|vue)'],
+			customSyntax: 'postcss-html',
+		},
 	],
 
 	// 规则配置
@@ -23,6 +31,12 @@ export default {
 		'no-invalid-double-slash-comments': null,
 		// 指定规则前需要空行
 		'rule-empty-line-before': ['always', {except: ['first-nested']}],
+		'scss/at-rule-no-unknown': [
+			true,
+			{
+				'ignoreAtRules': ['tailwind'],
+			},
+		],
 	},
 
 	// 忽略检查的文件或文件夹

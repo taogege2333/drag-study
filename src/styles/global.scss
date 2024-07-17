@@ -1,0 +1,30 @@
+body {
+	min-width: 920px;
+	background-color: #f5f5fc;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+	border-radius: 4px;
+}
+
+.ghost {
+	display: inline-block;
+	width: auto;
+	border: none;
+}
+
+.selected {
+	position: relative;
+	z-index: 100;
+	outline: 2px solid red !important;
+}

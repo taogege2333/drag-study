@@ -3,27 +3,24 @@ import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
 import prettier from 'eslint-plugin-prettier';
-import {FlatCompat} from '@eslint/eslintrc';
-import path from 'path';
-import {fileURLToPath} from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-});
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
 	{
 		files: ['**/*.{js,mjs,cjs,ts,vue}'],
 	},
 	{
-		languageOptions: {globals: globals.browser},
+		languageOptions: {
+			globals: globals.browser,
+			parserOptions: {
+				parser: '@typescript-eslint/parser',
+			},
+		},
 	},
 	pluginJs.configs.recommended,
 	...tseslint.configs.recommended,
 	...pluginVue.configs['flat/essential'],
+	eslintConfigPrettier,
 	{
 		ignores: ['**/node_modules/**', '**/dist/**'],
 		plugins: {
@@ -57,5 +54,4 @@ export default [
 			'vue/attribute-hyphenation': 'off', // 对模板中的自定义组件强制执行属性命名样式
 		},
 	},
-	...compat.extends('plugin:prettier/recommended'),
 ];

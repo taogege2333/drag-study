@@ -2,7 +2,7 @@
 	<vue-draggable
 		class="w-full h-full"
 		v-model="children"
-		:group="{name: 'widget'}"
+		group="widget"
 		ghostClass="ghost"
 		:animation="150"
 		@add="onAdd"

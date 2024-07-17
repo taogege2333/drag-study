@@ -10,6 +10,13 @@
 					@click="desiginer.removeWidget"
 					>删除</el-button
 				>
+				<el-button
+					v-if="currentWidget && !currentWidget?.disbaleRemove"
+					type="primary"
+					link
+					@click="desiginer.copyWidget"
+					>复制</el-button
+				>
 				<el-button type="primary" link @click="handleClickPreview">预览</el-button>
 			</el-row>
 		</el-col>

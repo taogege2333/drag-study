@@ -1,9 +1,5 @@
 <template>
-	<el-container
-		v-bind="widget.props"
-		class="w-full h-full border border-slate-300 border-dashed"
-		:class="{selected: currentWidget?.id === widget.id}"
-		@click.stop="handleClick">
+	<el-container v-bind="widget.props" class="w-full h-full border border-slate-300 border-dashed">
 		<component
 			v-for="item in widget.children"
 			:key="item.id"
@@ -17,9 +13,9 @@ defineOptions({
 	name: 'ContainerWidget',
 });
 
-import {useWidget} from '@/hooks/useWidget';
+import {computed} from 'vue';
 import {ContainerWidgetType} from '@/types/designer';
 
 const props = defineProps<{widget: ContainerWidgetType}>();
-const {widget, currentWidget, handleClick} = useWidget<ContainerWidgetType>(props);
+const widget = computed(() => props.widget);
 </script>

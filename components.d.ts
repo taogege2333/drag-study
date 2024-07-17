@@ -66,5 +66,6 @@ declare module 'vue' {
     ToolsPanel: typeof import('./src/components/ToolsPanel.vue')['default']
     TreePanel: typeof import('./src/components/TreePanel.vue')['default']
     WidgetPanel: typeof import('./src/components/WidgetPanel.vue')['default']
+    WidgetWrapper: typeof import('./src/components/common/WidgetWrapper.vue')['default']
   }
 }

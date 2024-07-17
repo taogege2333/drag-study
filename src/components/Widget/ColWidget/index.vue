@@ -1,9 +1,5 @@
 <template>
-	<el-col
-		v-bind="widget.props"
-		class="border border-slate-300 border-dashed"
-		:class="{selected: currentWidget?.id === widget.id}"
-		@click.stop="handleClick">
+	<el-col v-bind="widget.props" class="border border-slate-300 border-dashed">
 		<drag-frame :widgets="widget.children" :id="widget.id" :name="widget.name"></drag-frame>
 	</el-col>
 </template>
@@ -14,9 +10,9 @@ defineOptions({
 });
 
 import DragFrame from '@/components/DragFrame.vue';
-import {useWidget} from '@/hooks/useWidget';
+import {computed} from 'vue';
 import {ColWidgetType} from '@/types/col';
 
 const props = defineProps<{widget: ColWidgetType}>();
-const {widget, currentWidget, handleClick} = useWidget<ColWidgetType>(props);
+const widget = computed(() => props.widget);
 </script>

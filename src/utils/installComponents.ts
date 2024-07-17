@@ -1,3 +1,5 @@
+import withWidgetWrapper from './withWidgetWrapper';
+
 const modules: any = import.meta.glob(
 	[
 		'../components/Setting/**/*.vue',
@@ -13,7 +15,10 @@ export default {
 	install(app: any) {
 		for (const path in modules) {
 			const name = modules[path].default.name;
-			app.component(name, modules[path].default);
+			app.component(
+				name,
+				name.includes('Widget') ? withWidgetWrapper(modules[path].default) : modules[path].default,
+			);
 		}
 	},
 };

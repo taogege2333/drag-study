@@ -10,7 +10,6 @@ export enum Type {
 	Info = 'info',
 	Warning = 'warning',
 	Danger = 'danger',
-	Default = 'default',
 }
 
 export enum Justify {
@@ -20,4 +19,11 @@ export enum Justify {
 	SpaceBetween = 'space-between',
 	SpaceAround = 'space-around',
 	SpaceEvenly = 'space-evenly',
+}
+
+export enum LinkTarget {
+	Blank = '_blank',
+	Self = '_self',
+	Parent = '_parent',
+	Top = '_top',
 }

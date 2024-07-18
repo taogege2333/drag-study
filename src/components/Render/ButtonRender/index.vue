@@ -10,5 +10,4 @@ defineOptions({
 import {ButtonPropsType} from '@/types/button';
 
 const props = defineProps<ButtonPropsType>();
-console.log(props);
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<el-link :type="props.type">{{ props.text }}</el-link>
+	<el-link v-bind="props">{{ props.text }}</el-link>
 </template>
 
 <script setup lang="ts">

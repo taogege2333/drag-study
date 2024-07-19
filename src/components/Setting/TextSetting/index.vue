@@ -22,21 +22,27 @@
 						:value="item.value" />
 				</el-select>
 			</el-form-item>
+			<el-form-item label="truncated：">
+				<el-switch v-model="form.truncated" />
+			</el-form-item>
+			<el-form-item label="lineClamp：">
+				<el-input-number v-model="form.lineClamp" :min="0" />
+			</el-form-item>
 		</el-form>
 	</div>
 </template>
 
 <script setup lang="ts">
 defineOptions({
-	name: 'ButtonSetting',
+	name: 'TextSetting',
 });
 
-import {ButtonWidgetType} from '@/types/button';
+import {TextWidgetType} from '@/types/text';
 import {ref, computed} from 'vue';
 import {Type, Size} from '@/types/types';
 import {useUpdateProps} from '@/hooks/useUpdateProps';
 
-const props = defineProps<{widget: ButtonWidgetType}>();
+const props = defineProps<{widget: TextWidgetType}>();
 const widget = computed(() => props.widget);
 const form = ref({...widget.value.props});
 const typeOptions = ref([

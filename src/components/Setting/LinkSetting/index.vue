@@ -13,6 +13,24 @@
 						:value="item.value" />
 				</el-select>
 			</el-form-item>
+			<el-form-item label="target：">
+				<el-select v-model="form.target">
+					<el-option
+						v-for="item in targetOptions"
+						:key="item.value"
+						:label="item.label"
+						:value="item.value" />
+				</el-select>
+			</el-form-item>
+			<el-form-item label="href：">
+				<el-input v-model="form.href" />
+			</el-form-item>
+			<el-form-item label="disabled：">
+				<el-switch v-model="form.disabled" />
+			</el-form-item>
+			<el-form-item label="underline：">
+				<el-switch v-model="form.underline" />
+			</el-form-item>
 		</el-form>
 	</div>
 </template>
@@ -24,7 +42,7 @@ defineOptions({
 
 import {ref, computed} from 'vue';
 import {LinkWidgetType} from '@/types/link';
-import {Type} from '@/types/types';
+import {Type, LinkTarget} from '@/types/types';
 import {useUpdateProps} from '@/hooks/useUpdateProps';
 
 const props = defineProps<{widget: LinkWidgetType}>();
@@ -37,7 +55,13 @@ const typeOptions = ref([
 	{label: 'info', value: Type.Info},
 	{label: 'warning', value: Type.Warning},
 	{label: 'danger', value: Type.Danger},
-	{label: 'default', value: Type.Default},
+]);
+
+const targetOptions = ref([
+	{label: '_blank', value: LinkTarget.Blank},
+	{label: '_self', value: LinkTarget.Self},
+	{label: '_parent', value: LinkTarget.Parent},
+	{label: '_top', value: LinkTarget.Top},
 ]);
 
 useUpdateProps(widget.value.id as string, widget.value, form);

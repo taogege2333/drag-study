@@ -1,9 +1,5 @@
 <template>
-	<el-row
-		v-bind="widget.props"
-		class="h-full max-h-20 border border-slate-300 border-dashed"
-		:class="{selected: currentWidget?.id === widget.id}"
-		@click.stop="handleClick">
+	<el-row v-bind="widget.props" class="h-full max-h-20 border border-slate-300 border-dashed">
 		<component
 			v-for="item in widget.children"
 			:key="item.id"
@@ -17,9 +13,9 @@ defineOptions({
 	name: 'RowWidget',
 });
 
-import {useWidget} from '@/hooks/useWidget';
+import {computed} from 'vue';
 import {RowWidgetType} from '@/types/row';
 
 const props = defineProps<{widget: RowWidgetType}>();
-const {widget, currentWidget, handleClick} = useWidget<RowWidgetType>(props);
+const widget = computed(() => props.widget);
 </script>

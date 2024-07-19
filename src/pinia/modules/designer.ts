@@ -6,6 +6,7 @@ import {
 	updateWidgetChildren,
 	updateWidget,
 	removeWidget,
+	copyWidget,
 } from '@/utils/utils';
 
 export const useDesignerStore = defineStore('designer', {
@@ -54,6 +55,11 @@ export const useDesignerStore = defineStore('designer', {
 			if (this.currentWidget) {
 				removeWidget(this.widgets, this.currentWidget.id as string);
 				this.currentWidget = null;
+			}
+		},
+		copyWidget() {
+			if (this.currentWidget) {
+				copyWidget(this.widgets, this.currentWidget.id as string);
 			}
 		},
 	},

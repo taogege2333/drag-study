@@ -222,6 +222,40 @@ export const removeWidget = (widgets: WidgetType[], id: string): boolean => {
 	return false;
 };
 
+/**
+ * 复制组件
+ * @param widgets
+ * @param id
+ * @returns
+ */
+export const copyWidget = (widgets: WidgetType[], id: string): boolean => {
+	if (widgets.length === 0) return false;
+	for (let i = 0; i < widgets.length; i++) {
+		const widget = widgets[i];
+		if (widget.id === id) {
+			const newWidget = cloneDeepWidget(widget);
+			widgets.splice(i + 1, 0, newWidget);
+			return true;
+		}
+		if (widget.children) {
+			const res = copyWidget(widget.children, id);
+			if (res) return true;
+		}
+	}
+	return false;
+};
+
+const cloneDeepWidget = (widget: WidgetType, isFirst = true) => {
+	const newWidget = isFirst ? cloneDeep(widget) : widget;
+	newWidget.id = `${newWidget.name}-${generateId()}`;
+	if (newWidget.children && newWidget.children.length > 0) {
+		for (let i = 0; i < newWidget.children.length; i++) {
+			newWidget.children[i] = cloneDeepWidget(newWidget.children[i], false);
+		}
+	}
+	return newWidget;
+};
+
 export const checkMove = (target: string, to: string | undefined) => {
 	console.log(target, to);
 	return true;

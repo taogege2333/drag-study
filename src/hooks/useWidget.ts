@@ -8,7 +8,9 @@ export function useWidget<T extends WidgetType>(props: {widget: T}) {
 	const designer = useDesignerStore();
 	const {currentWidget} = storeToRefs(designer);
 
-	const handleClick = () => {
+	const handleClick = (e: Event) => {
+		e.stopPropagation();
+		e.preventDefault();
 		designer.setCurrentWidget(widget.value.id);
 	};
 

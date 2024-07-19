@@ -13,6 +13,7 @@ declare module 'vue' {
     ButtonRender: typeof import('./src/components/Render/ButtonRender/index.vue')['default']
     ButtonSetting: typeof import('./src/components/Setting/ButtonSetting/index.vue')['default']
     ButtonWidget: typeof import('./src/components/Widget/ButtonWidget/index.vue')['default']
+    CodeEditor: typeof import('./src/components/common/CodeEditor.vue')['default']
     ColRender: typeof import('./src/components/Render/ColRender/index.vue')['default']
     ColSetting: typeof import('./src/components/Setting/ColSetting/index.vue')['default']
     ColWidget: typeof import('./src/components/Widget/ColWidget/index.vue')['default']

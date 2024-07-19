@@ -11,7 +11,7 @@ export default [
 	},
 	{
 		languageOptions: {
-			globals: globals.browser,
+			globals: {...globals.browser, ElMessage: 'readonly', ElMessageBox: 'readonly'},
 			parserOptions: {
 				parser: '@typescript-eslint/parser',
 			},
